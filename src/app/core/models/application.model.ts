@@ -4,5 +4,4 @@ export interface application {
     userId: number;
     offerId: number;
     status: applicationStatus;
-    createdAt: Date;
 }

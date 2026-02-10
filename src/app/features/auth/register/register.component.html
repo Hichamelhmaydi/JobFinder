@@ -21,74 +21,124 @@
                 Register
             </h2>
 
-            <form action="" method="post" autocomplete="off" class="space-y-4">
+            <form [formGroup]="registerForm" class="space-y-4">
 
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
                         First Name
                     </label>
+
                     <input 
                         type="text" 
-                        name="firstName"
+                        formControlName="firstName"
                         class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+
+                  <ng-container *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+                    <div class="text-red-500 text-sm mt-1">
+                      First Name is required.
+                    </div>
+                  </ng-container>
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
                         Last Name
                     </label>
+
                     <input 
                         type="text" 
-                        name="lastName"
+                        formControlName="lastName"
                         class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+
+                    <ng-container *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+                    <div class="text-red-500 text-sm mt-1">
+                        Last Name is required.
+                    </div>
+                    </ng-container>
+
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
                         Email
                     </label>
+
                     <input 
                         type="email" 
-                        name="email"
+                        formControlName="email"
                         class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+
+                    <ng-container *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                    <div class="text-red-500 text-sm mt-1">
+                        Email is required and must be valid.
+                    </div>
+                    </ng-container>
+
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
                         Number
                     </label>
+
                     <input 
                         type="tel" 
-                        name="number"
+                        formControlName="number"
                         class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+
+                    <ng-container *ngIf="registerForm.get('number')?.invalid && registerForm.get('number')?.touched">
+                    <div class="text-red-500 text-sm mt-1">
+                        Number is required.
+                    </div>
+                    </ng-container>
+
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
                         Country
                     </label>
+
                     <input 
                         type="text" 
-                        name="country"
+                        formControlName="country"
                         class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
-                </div>
 
+                    <ng-container *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
+                    <div class="text-red-500 text-sm mt-1">
+                        Country is required.
+                    </div>
+                    </ng-container>
+
+                </div>
+                    
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
                         Password
                     </label>
+
                     <input 
                         type="password" 
-                        name="password"
+                        formControlName="password"
                         class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+
+                    <ng-container *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                    <div class="text-red-500 text-sm mt-1">
+                        Password is required.
+                    </div>
+                    </ng-container>
+
                 </div>
 
                 <button 
                     type="submit"
-                    onclick="register()"
+                    [disabled]="registerForm.invalid"
+                     [ngClass]="{'bg-red-600 hover:bg-red-700 cursor-not-allowed': registerForm.invalid}"
+                    (click)="onSubmit()"
                     class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
                     Register
                 </button>
+               
             </form>
         </div>
     </div>
