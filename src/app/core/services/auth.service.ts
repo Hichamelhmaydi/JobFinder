@@ -1,6 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
+import {RegisterComponent} from '../../features/auth/register/register.component';
+import {user} from '../models/user.model'
 
 @Injectable({
   providedIn: 'root',
@@ -8,8 +10,10 @@ import { environment } from '../../../environments/environment.development';
 export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
-  checkEmailIsExists (email : string){
-    return this.http.get<{exists : boolean}>(`${this.apiUrl}/auth/check-email`),{params:{email}};
+  checkEmailExists (email : string){
+    return this.http.get<{exists : boolean}>(`${this.apiUrl}/users`,{params:{email}});
   }
-  
+createUser(user: user) {
+  return this.http.post<user>(`${this.apiUrl}/users`, user);
+}
 }
