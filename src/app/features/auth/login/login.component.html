@@ -1,3 +1,62 @@
-<div>
-    <p>test</p>
+
+
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+
+
+    <div class="w-96 max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden ">
+
+
+
+        <div class="p-8" dir="rtl">
+            <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">
+                Login
+            </h2>
+
+            <form  [formGroup]="loginForm"class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
+                        Email
+                    </label>
+
+                    <input 
+                        type="email" 
+                        formControlName="email"
+                        class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                        <ng-container *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+                            <div class="text-red-500 text-sm mt-1">
+                                Email is required and must be valid.
+                            </div>
+                        </ng-container>
+                </div>
+
+
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
+                        Password
+                    </label>
+
+                    <input 
+                        type="password" 
+                        formControlName="password"
+                        class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
+                        <ng-container *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                            <div class="text-red-500 text-sm mt-1">
+                                Password is required.
+                            </div>
+                        </ng-container>
+                </div>
+
+                <button 
+                    type="submit"
+                    (click)="onSubmit()"
+                    [disabled]="loginForm.invalid"
+                    [ngClass]="{'bg-red-600 hover:bg-red-700 cursor-not-allowed': loginForm.invalid}"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
+                    login
+                </button>
+               
+            </form>
+        </div>
+    </div>
 </div>
