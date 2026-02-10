@@ -18,7 +18,7 @@
                 Register
             </h2>
 
-            <form [formGroup]="registerForm" class="space-y-4">
+            <form [formGroup]="registerForm" class="space-y-4" (ngSubmit)="onSubmit()">
 
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1 text-right">
@@ -131,7 +131,6 @@
                     type="submit"
                     [disabled]="registerForm.invalid"
                      [ngClass]="{'bg-red-600 hover:bg-red-700 cursor-not-allowed': registerForm.invalid}"
-                    (click)="onSubmit()"
                     class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition">
                     Register
                 </button>

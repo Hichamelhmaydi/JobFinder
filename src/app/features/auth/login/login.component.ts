@@ -1,7 +1,6 @@
 import { CommonModule } from "@angular/common";
-import { Component,inject } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
 
 
 
@@ -15,13 +14,16 @@ import { ActivatedRoute } from "@angular/router";
   
 })
 export class LoginComponent  { 
-    route = inject(ActivatedRoute);
     loginForm  = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email,Validators.minLength(6)]),
         password: new FormControl('', Validators.required),
     });
     
     onSubmit() {
-        return true;
+       if(this.loginForm.valid) {
+        console.log(this.loginForm.value);
+       } else {
+        console.log('Form is invalid');
+        }
     }
 }
