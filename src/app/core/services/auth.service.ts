@@ -17,9 +17,12 @@ export class AuthService {
   checkEmailExists (email : string){
     return this.http.get<user[]>(`${this.apiUrl}/users`,{params:{email}});
   }
-createUser(user: user) {
-  return this.http.post<user>(`${this.apiUrl}/users`, user);
-}
+  createUser(user: user) {
+    return this.http.post<user>(`${this.apiUrl}/users`, user);
+  }
+  getAllUsers(){
+    return this.http.get<user[]> (`${this.apiUrl}/users`);
+  }
 
 register(user: user) {
 return this.checkEmailExists(user.email).pipe(
@@ -40,6 +43,7 @@ return this.checkEmailExists(user.email).pipe(
 
 
 }
+
 
 
 }
