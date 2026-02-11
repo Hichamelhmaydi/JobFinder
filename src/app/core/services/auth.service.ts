@@ -68,4 +68,13 @@ login(email: string, password: string) {
 }
 
 
+
+isAuthenticated(): boolean {
+  const user = sessionStorage.getItem('user');
+  return !!user;
+}
+
+
+
+
 }

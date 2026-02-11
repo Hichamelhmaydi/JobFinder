@@ -12,4 +12,12 @@ export const routes: Routes = [
         path: 'register',
         loadComponent: () => import('./features/auth/register/register.component').then(m => m.RegisterComponent)
    },
+   { 
+        path: 'home',
+        loadComponent: () => import('./app').then(m => m.App)
+   },
+      { 
+        path: ' ',
+        loadComponent: () => import('./app').then(m => m.App)
+   },
 ];
