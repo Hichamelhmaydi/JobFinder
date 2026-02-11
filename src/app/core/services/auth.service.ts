@@ -74,6 +74,12 @@ isAuthenticated(): boolean {
   return !!user;
 }
 
+logout(): void {
+  sessionStorage.removeItem('user');
+  this.router.navigate(['/login']);
+}
+
+
 
 
 
