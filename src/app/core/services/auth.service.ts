@@ -4,6 +4,8 @@ import { environment } from '../../../environments/environment.development';
 import {user} from '../models/user.model'
 import { catchError, first, last, map, switchMap, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+
 
 
 @Injectable({
@@ -13,6 +15,10 @@ export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
   private router = inject(Router);
+
+  private authState = new BehaviorSubject<boolean>(this.isAuthenticated());
+  authState$ = this.authState.asObservable();
+
 
   checkEmailExists (email : string){
     return this.http.get<user[]>(`${this.apiUrl}/users`,{params:{email}});
@@ -60,9 +66,10 @@ login(email: string, password: string) {
         email:user.email
       }
       sessionStorage.setItem('user', JSON.stringify(usersave));
+      this.authState.next(true);
       return usersave;
     }),
-    tap(() => this.router.navigate(['footer'])),
+    tap(() => this.router.navigate(['home'])),
     catchError(err => throwError(() => err))
   );
 }
@@ -76,6 +83,7 @@ isAuthenticated(): boolean {
 
 logout(): void {
   sessionStorage.removeItem('user');
+  this.authState.next(false);
   this.router.navigate(['/login']);
 }
 

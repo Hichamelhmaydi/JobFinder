@@ -1,0 +1,38 @@
+<header class="bg-white shadow-lg">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex justify-between items-center h-16">
+
+      <div>
+        <a routerLink="/home" class="text-2xl font-bold text-blue-600">
+          JobFinder
+        </a>
+      </div>
+
+      <div class="hidden md:flex md:items-center md:space-x-8">
+        <a routerLink="/home" class="text-gray-600 hover:text-blue-600">Accueil</a>
+        <ng-container *ngIf="(isAuthenticated$ | async)">
+            <a routerLink="/favorites" class="text-gray-600 hover:text-blue-600">Favoris</a>
+            <a routerLink="/applications" class="text-gray-600 hover:text-blue-600">Candidatures</a>
+        </ng-container>
+      </div>
+
+      <div class="hidden md:flex md:items-center md:space-x-4">
+
+        <ng-container *ngIf="!(isAuthenticated$ | async)">
+          <a routerLink="/login" class="text-gray-600 hover:text-blue-600">Connexion</a>
+          <a routerLink="/register" class="bg-blue-600 text-white px-6 py-2 rounded-lg">Inscription</a>
+        </ng-container>
+
+        <ng-container *ngIf="isAuthenticated$ | async">
+          <a routerLink="/profile" class="text-gray-600 hover:text-blue-600">Mon Profil</a>
+          <button (click)="logout()" class="bg-red-600 text-white px-6 py-2 rounded-lg">
+            Déconnexion
+          </button>
+        </ng-container>
+
+      </div>
+
+    </div>
+  </nav>
+</header>
