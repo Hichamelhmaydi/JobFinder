@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from "@angular/forms";
 import { AuthService } from "../../../core/services/auth.service";
+import { NonNullableFormBuilder } from '@angular/forms';
 
 
 
@@ -17,21 +18,31 @@ import { AuthService } from "../../../core/services/auth.service";
 export class RegisterComponent  { 
     private authService = inject(AuthService)
 
-    registerForm = new FormGroup ({
-        firstName : new FormControl('',[Validators.required]),
-        lastName : new FormControl('',[Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email,Validators.minLength(6)]),
-        number: new FormControl('',[Validators.required]),
-        country: new FormControl('',[Validators.required]),
-        password : new FormControl('',[Validators.required])
+    private fb = inject(NonNullableFormBuilder);
+
+    registerForm = this.fb.group({
+    firstName: ['', Validators.required,Validators.minLength(4)],
+    lastName: ['', Validators.required,Validators.minLength(4)],
+    email: ['', [Validators.required, Validators.email, Validators.minLength(6)]],
+    number: ['', Validators.required,Validators.minLength(10)],
+    country: ['', Validators.required,Validators.minLength(3)],
+    password: ['', Validators.required,Validators.minLength(8)]
     });
     
     onSubmit() {
-       if(this.registerForm.valid) {
-        console.log(this.registerForm.value);
-        const userData = this.registerForm.value;
-       } else {
-        console.log('Form is invalid');
+    if (this.registerForm.invalid) return;
+
+    const userData = this.registerForm.getRawValue();
+
+    this.authService.register(userData).subscribe({
+        next: (createdUser) => {
+        console.log('Registration successful', createdUser);
+        this.registerForm.reset();
+        },
+        error: (err) => {
+        console.error('Registration failed', err.message);
         }
+    });
     }
+
 }

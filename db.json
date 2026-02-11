@@ -1,5 +1,24 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": "3de7",
+      "firstName": "Rerum nisi ullam ut ",
+      "lastName": "Anim sit aperiam dol",
+      "email": "fyzoduju@mailinator.com",
+      "number": "+1 (904) 439-4869",
+      "country": "Odit quia iure nostr",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "0354",
+      "firstName": "Totam dolore tempora",
+      "lastName": "Vitae aut quas eaque",
+      "email": "cily@mailinator.com",
+      "number": "+1 (379) 853-7935",
+      "country": "Facilis dolores dolo",
+      "password": "Pa$$w0rd!"
+    }
+  ],
   "favoritesOffers": [],
   "applications": []
 }
