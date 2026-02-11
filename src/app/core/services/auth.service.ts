@@ -80,7 +80,10 @@ logout(): void {
 }
 
 
-
+getCurrentUser(): {id: number;firstName: string;lastName: string;email: string;} | null {
+  const user = sessionStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
+}
 
 
 }
