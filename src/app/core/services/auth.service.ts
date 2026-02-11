@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import {user} from '../models/user.model'
-import { catchError, switchMap, tap, throwError } from 'rxjs';
+import { catchError, first, last, map, switchMap, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 
@@ -20,9 +20,7 @@ export class AuthService {
   createUser(user: user) {
     return this.http.post<user>(`${this.apiUrl}/users`, user);
   }
-  getAllUsers(){
-    return this.http.get<user[]> (`${this.apiUrl}/users`);
-  }
+  
 
 register(user: user) {
 return this.checkEmailExists(user.email).pipe(
@@ -31,8 +29,6 @@ return this.checkEmailExists(user.email).pipe(
     return this.createUser(user);
   }),
   tap(createdUser => {
-    const saveUser = {id: createdUser.id,email: createdUser.email,name: createdUser.firstName};
-    sessionStorage.setItem('user', JSON.stringify(saveUser));
     this.router.navigate(['login']);
   }),
   catchError(err => {
@@ -44,6 +40,32 @@ return this.checkEmailExists(user.email).pipe(
 
 }
 
+
+login(email: string, password: string) {
+  const params = new HttpParams()
+    .set('email', email)
+    .set('password', password);
+
+  return this.http.get<user[]>(`${this.apiUrl}/users`, { params }).pipe(
+    map(users => {
+      if (users.length === 0) {
+        throw new Error('Email or password incorrect'); 
+      }
+
+      const user = users[0];
+      const usersave={
+        id:user.id,
+        firstName:user.firstName,
+        lastName:user.lastName,
+        email:user.email
+      }
+      sessionStorage.setItem('user', JSON.stringify(usersave));
+      return usersave;
+    }),
+    tap(() => this.router.navigate(['footer'])),
+    catchError(err => throwError(() => err))
+  );
+}
 
 
 }
