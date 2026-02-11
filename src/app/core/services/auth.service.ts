@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import {user} from '../models/user.model'
 import { catchError, switchMap, tap, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +12,8 @@ import { catchError, switchMap, tap, throwError } from 'rxjs';
 export class AuthService {
   private http = inject(HttpClient);
   private apiUrl = environment.apiUrl;
+  private router = inject(Router);
+
   checkEmailExists (email : string){
     return this.http.get<user[]>(`${this.apiUrl}/users`,{params:{email}});
   }
@@ -26,6 +30,7 @@ return this.checkEmailExists(user.email).pipe(
   tap(createdUser => {
     const saveUser = {id: createdUser.id,email: createdUser.email,name: createdUser.firstName};
     sessionStorage.setItem('user', JSON.stringify(saveUser));
+    this.router.navigate(['login']);
   }),
   catchError(err => {
     console.error(err);
