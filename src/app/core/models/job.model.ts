@@ -23,3 +23,10 @@ export interface JobApiResponse {
   total: number;
   results: Job[];
 }
+
+export interface JobFilters {
+  page?: number;        
+  location?: string;    
+  level?: string;       
+  category?: string;   
+}
