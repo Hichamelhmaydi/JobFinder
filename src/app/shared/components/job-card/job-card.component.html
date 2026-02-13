@@ -1,0 +1,43 @@
+@if (jobs$ | async; as response) {
+
+  <div class="max-w-7xl mx-auto px-6 py-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+    @for (job of response.results; track job.id) {
+
+      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 p-6 flex flex-col justify-between">
+
+        <div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">
+            {{ job.name }}
+          </h3>
+
+          <p class="text-sm text-gray-600 mb-1">
+            <span class="font-medium text-gray-800">Company:</span>
+            {{ job.company.name }}
+          </p>
+
+          <p class="text-sm text-gray-600">
+            <span class="font-medium text-gray-800">Location:</span>
+            {{ job.locations?.[0]?.name ?? 'Remote / Not specified' }}
+          </p>
+            <!-- <p class="text-sm text-gray-600">
+            <span class="font-medium text-gray-800">Description:</span>
+            {{ job.contents ?? 'no content' }}
+          </p> -->
+        </div>
+
+        <div class="mt-6">
+          <button
+            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-xl hover:bg-indigo-700 transition-colors duration-200 font-medium"
+          >
+            View Details
+          </button>
+        </div>
+
+      </div>
+
+    }
+
+  </div>
+
+}
