@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { JobService } from '../../../core/services/job-api.service';
 import { Observable, catchError, of } from 'rxjs';
 import { JobApiResponse } from '../../../core/models/job.model';
+import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 
 @Component({
   selector: 'app-job',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoadingSpinnerComponent],
   templateUrl: './job-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -10,4 +10,6 @@ import { FooterComponent } from "../../shared/components/layout/footer/footer.co
   imports: [CommonModule, JobComponent, HeaderComponent, FooterComponent],
   templateUrl:'./home.component.html'
 })
-export class HomeComponent {}
+export class HomeComponent {
+  
+}
