@@ -1,0 +1,44 @@
+ <div class="flex items-center justify-center gap-2 py-8">
+      <button
+        (click)="onPageChange(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        [class.opacity-50]="currentPage === 1"
+        [class.cursor-not-allowed]="currentPage === 1"
+        class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors duration-200 disabled:hover:bg-white"
+      >
+        Précédent
+      </button>
+
+      <div class="flex gap-2">
+        @for (page of getPageNumbers(); track page) {
+          @if (page === '...') {
+            <span class="px-4 py-2 text-gray-500">...</span>
+          } @else {
+            <button
+              (click)="onPageChange(page)"
+              [class.bg-blue-600]="currentPage === page"
+              [class.text-white]="currentPage === page"
+              [class.bg-white]="currentPage !== page"
+              [class.text-gray-700]="currentPage !== page"
+              class="px-4 py-2 border border-gray-300 rounded-lg font-medium hover:bg-blue-500 hover:text-white transition-colors duration-200"
+            >
+              {{ page }}
+            </button>
+          }
+        }
+      </div>
+
+      <button
+        (click)="onPageChange(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+        [class.opacity-50]="currentPage === totalPages"
+        [class.cursor-not-allowed]="currentPage === totalPages"
+        class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors duration-200 disabled:hover:bg-white"
+      >
+        Suivant
+      </button>
+    </div>
+
+    <div class="text-center text-sm text-gray-600 pb-4">
+      Page {{ currentPage }} sur {{ totalPages }} ({{ totalItems }} résultats)
+    </div>
