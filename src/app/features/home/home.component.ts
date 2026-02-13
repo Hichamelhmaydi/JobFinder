@@ -6,11 +6,12 @@ import { FooterComponent } from "../../shared/components/layout/footer/footer.co
 import { Observable } from 'rxjs';
 import { JobApiResponse } from '../../core/models/job.model';
 import { JobService } from '../../core/services/job-api.service';
+import {PaginationComponent} from '../../shared/components/pagination/pagination.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, JobComponent, HeaderComponent, FooterComponent],
+  imports: [CommonModule, JobComponent, HeaderComponent, FooterComponent,PaginationComponent],
   templateUrl:'./home.component.html'
 })
 export class HomeComponent {
