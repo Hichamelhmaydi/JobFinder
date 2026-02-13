@@ -25,8 +25,7 @@ export interface JobApiResponse {
 }
 
 export interface JobFilters {
-  page?: number;        
-  location?: string;    
-  level?: string;       
-  category?: string;   
+  page?: number;
+  keyword?: string;     
+  location?: string;     
 }

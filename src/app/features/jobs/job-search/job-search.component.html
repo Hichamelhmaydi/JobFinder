@@ -1,0 +1,35 @@
+<div class="min-h-screen bg-gray-100">
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-gray-900 mb-2">Recherche d'emplois</h1>
+      <p class="text-gray-600">Explorez plus de 4000 pages d'offres internationales</p>
+    </div>
+
+    <app-job-search-form (search)="onSearch($event)"></app-job-search-form>
+
+    <app-job-results
+      [jobs$]="jobs$"
+      [isAuthenticated]="isAuthenticated"
+      [favoriteIds]="favoriteIds"
+      [hasFilters]="hasFilters()"
+      (viewDetails)="onViewDetails($event)"
+      (addToFavorites)="onAddToFavorites($event)"
+      (trackApplication)="onTrackApplication($event)"
+      (nextPage)="onNextPage()"
+      (clearFilters)="onClearFilters()"
+    ></app-job-results>
+
+    @if ((jobs$ | async)?.page_count ?? 0 > 1) {
+      <app-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        [totalItems]="totalItems"
+        (pageChange)="onPageChange($event)"
+      ></app-pagination>
+    }
+
+  </main>
+
+</div>

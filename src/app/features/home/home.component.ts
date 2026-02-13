@@ -1,17 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { JobComponent } from "../../shared/components/job-card/job-card.component";
 import { HeaderComponent } from "../../shared/components/layout/headre/headre.component";
 import { FooterComponent } from "../../shared/components/layout/footer/footer.component";
 import { Observable } from 'rxjs';
 import { JobApiResponse } from '../../core/models/job.model';
 import { JobService } from '../../core/services/job-api.service';
 import {PaginationComponent} from '../../shared/components/pagination/pagination.component'
+import { JobSearchComponent } from "../jobs/job-search/job-search.component";
+import { JobResultsComponent } from "../jobs/components/job-results/job-results.component";
+import { JobSearchFormComponent } from "../jobs/components/job-search-form/job-search-form.component";
+import { LoadingSpinnerComponent } from "../../shared/components/loading-spinner/loading-spinner.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, JobComponent, HeaderComponent, FooterComponent,PaginationComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, PaginationComponent, JobSearchComponent, JobResultsComponent, JobSearchFormComponent, LoadingSpinnerComponent],
   templateUrl:'./home.component.html'
 })
 export class HomeComponent {

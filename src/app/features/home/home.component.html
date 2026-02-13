@@ -3,14 +3,7 @@
 </header>
 
 <main>
-    <app-job [jobs$]="jobs$"></app-job>
-    
-    <app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="totalPages"
-        [totalItems]="totalItems"
-        (pageChange)="onPageChange($event)"
-    ></app-pagination>
+    <app-job-search></app-job-search>
 </main>
 
 <footer>
