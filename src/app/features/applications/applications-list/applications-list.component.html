@@ -1,13 +1,11 @@
 <div class="min-h-screen bg-gray-100 py-10">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <!-- Header -->
     <div class="mb-8 flex items-center justify-between">
       <h1 class="text-4xl font-bold text-gray-900">Mes candidatures</h1>
       <a routerLink="/jobs" class="text-indigo-600 hover:text-indigo-800 font-medium">← Retour à la recherche</a>
     </div>
 
-    <!-- Stats -->
     @if ((applications$ | async); as applications) {
       @if (applications.length > 0) {
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -46,7 +44,6 @@
       @let applications = applications$ | async;
 
       @if (applications?.length === 0) {
-        <!-- État vide -->
         <div class="bg-white rounded-xl shadow-lg p-12 text-center">
           <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
@@ -59,7 +56,6 @@
         </div>
       } @else {
 
-        <!-- Filtre par statut -->
         <div class="flex gap-2 mb-6 flex-wrap">
           <button
             (click)="selectedStatus = null"
@@ -81,7 +77,6 @@
           }
         </div>
 
-        <!-- Liste -->
         <div class="grid gap-4">
           @for (app of filterApplications(applications!, selectedStatus); track app.id) {
             <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -113,12 +108,10 @@
 
               <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
 
-                <!-- Badge statut actuel -->
                 <span class="px-3 py-1 rounded-full text-sm font-medium {{ getStatusColor(app.status) }}">
                   {{ getStatusLabel(app.status) }}
                 </span>
 
-                <!-- Changer le statut -->
                 <select
                   (change)="onStatusChange(app.id, $event)"
                   class="text-sm border border-gray-300 rounded-lg px-3 py-2 focus:ring-indigo-500 focus:border-indigo-500">
@@ -130,7 +123,6 @@
                   }
                 </select>
 
-                <!-- Actions -->
                 <div class="flex gap-2">
                   <a
                     [routerLink]="['/job', app.offerId]"

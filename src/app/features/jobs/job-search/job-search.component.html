@@ -9,17 +9,18 @@
 
     <app-job-search-form (search)="onSearch($event)"></app-job-search-form>
 
-<app-job-results
-  [jobs$]="jobs$"
-  [isAuthenticated]="isAuthenticated"
-  [favoriteIds]="(favoriteIds$ | async) ?? []"
-  [hasFilters]="hasFilters()"
-  (viewDetails)="onViewDetails($event)"
-  (addToFavorites)="onAddToFavorites($event)"
-  (trackApplication)="onTrackApplication($event)"
-  (nextPage)="onNextPage()"
-  (clearFilters)="onClearFilters()"
-></app-job-results>
+    <app-job-results
+      [jobs$]="jobs$"
+      [isAuthenticated]="isAuthenticated"
+      [favoriteIds]="(favoriteIds$ | async) ?? []"
+      [applicationIds]="(applicationIds$ | async) ?? []"  
+      [hasFilters]="hasFilters()"
+      (viewDetails)="onViewDetails($event)"
+      (addToFavorites)="onAddToFavorites($event)"
+      (trackApplication)="onTrackApplication($event)"
+      (nextPage)="onNextPage()"
+      (clearFilters)="onClearFilters()"
+    ></app-job-results>
 
     @if ((jobs$ | async)?.page_count ?? 0 > 1) {
       <app-pagination

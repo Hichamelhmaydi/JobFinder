@@ -114,26 +114,59 @@
   "favorites": [],
   "applications": [
     {
-      "id": "0fe0",
+      "id": "ef6a",
       "userId": "ecb9",
-      "offerId": 21203049,
-      "title": "Administrative Assistant",
-      "company": "DaVita",
-      "location": "Long Beach, CA",
-      "status": "rejected",
-      "appliedAt": "2026-02-23T14:55:29.278Z",
-      "updatedAt": "2026-02-23T14:56:07.796Z"
+      "offerId": 20182786,
+      "title": "Fulfillment Center Supervisor",
+      "company": "Walmart",
+      "location": "Ponte Vedra Beach, FL",
+      "status": "pending",
+      "appliedAt": "2026-02-23T15:28:04.210Z",
+      "updatedAt": "2026-02-23T15:28:04.210Z"
     },
     {
-      "id": "ce84",
+      "id": "85f2",
       "userId": "ecb9",
-      "offerId": 20331653,
-      "title": "Pharmacy Intern - Grad",
+      "offerId": 20020349,
+      "title": "Operations Manager",
       "company": "CVS Health",
-      "location": "Kansas City, MO",
-      "status": "accepted",
-      "appliedAt": "2026-02-23T14:55:53.374Z",
-      "updatedAt": "2026-02-23T14:55:58.738Z"
+      "location": "Greenville, SC",
+      "status": "pending",
+      "appliedAt": "2026-02-23T15:28:09.446Z",
+      "updatedAt": "2026-02-23T15:28:09.446Z"
+    },
+    {
+      "id": "7909",
+      "userId": "ecb9",
+      "offerId": 20209333,
+      "title": "Senior Manager, Strategic Account Management- Marketplace- Not Remote",
+      "company": "Walmart",
+      "location": "Redwood City, CA",
+      "status": "pending",
+      "appliedAt": "2026-02-23T15:28:15.920Z",
+      "updatedAt": "2026-02-23T15:28:15.920Z"
+    },
+    {
+      "id": "6884",
+      "userId": "ecb9",
+      "offerId": 20210622,
+      "title": "Warehouse Operations Supervisor",
+      "company": "Walmart",
+      "location": "Fishers, IN",
+      "status": "pending",
+      "appliedAt": "2026-02-23T15:28:21.786Z",
+      "updatedAt": "2026-02-23T15:28:21.786Z"
+    },
+    {
+      "id": "39f5",
+      "userId": "ecb9",
+      "offerId": 20793917,
+      "title": "Strategic Workday Functional Analyst - Talent Management",
+      "company": "CVS Health",
+      "location": "Madison, WI",
+      "status": "pending",
+      "appliedAt": "2026-02-23T15:28:30.343Z",
+      "updatedAt": "2026-02-23T15:28:30.343Z"
     }
   ]
 }

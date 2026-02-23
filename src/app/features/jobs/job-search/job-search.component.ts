@@ -30,10 +30,10 @@ export class JobSearchComponent implements OnInit {
   private jobService = inject(JobService);
   private router = inject(Router);
   private store = inject(Store);
+  private pendingApplications = new Set<number>();
 
   jobs$!: Observable<JobApiResponse>;
 
-  // Observables réactifs depuis le store
   favoriteIds$: Observable<number[]> = this.store.select(FavoritesSelectors.selectFavoriteOfferIds);
   applicationIds$: Observable<number[]> = this.store.select(ApplicationsSelectors.selectApplicationOfferIds);
 
@@ -128,36 +128,37 @@ export class JobSearchComponent implements OnInit {
       });
   }
 
-  onTrackApplication(job: Job): void {
-    if (!this.isAuthenticated) {
-      this.router.navigate(['/login']);
+onTrackApplication(job: Job): void {
+  if (!this.isAuthenticated) {
+    this.router.navigate(['/login']);
+    return;
+  }
+
+  const userStr = sessionStorage.getItem('user');
+  if (!userStr) return;
+  const user = JSON.parse(userStr);
+
+  this.applicationIds$.pipe(take(1)).subscribe(ids => {
+    if (ids.includes(job.id)) {
+      this.router.navigate(['/applications']);
       return;
     }
 
-    const userStr = sessionStorage.getItem('user');
-    if (!userStr) return;
-    const user = JSON.parse(userStr);
+    this.store.dispatch(ApplicationsActions.addApplication({
+      application: {
+        userId: user.id,
+        offerId: job.id,
+        title: job.name,
+        company: job.company.name,
+        location: job.locations?.[0]?.name ?? 'Remote / Non spécifié',
+        status: 'pending',
+        appliedAt: new Date(),
+        updatedAt: new Date()
+      }
+    }));
 
-    this.store.select(ApplicationsSelectors.selectApplicationByOfferId(job.id))
-      .pipe(take(1))
-      .subscribe(existing => {
-        if (existing) {
-          this.router.navigate(['/applications']);
-        } else {
-          this.store.dispatch(ApplicationsActions.addApplication({
-            application: {
-              userId: user.id,
-              offerId: job.id,
-              title: job.name,
-              company: job.company.name,
-              location: job.locations?.[0]?.name ?? 'Remote / Non spécifié',
-              status: 'pending',
-              appliedAt: new Date(),
-              updatedAt: new Date()
-            }
-          }));
-          this.router.navigate(['/applications']);
-        }
-      });
-  }
+    // ✅ Naviguer après un court délai pour laisser le serveur répondre
+    setTimeout(() => this.router.navigate(['/applications']), 300);
+  });
+}
 }

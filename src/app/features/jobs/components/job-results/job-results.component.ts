@@ -24,6 +24,7 @@ export class JobResultsComponent {
   @Input() isAuthenticated = false;
   @Input() favoriteIds: number[] = [];
   @Input() hasFilters = false; 
+  @Input() applicationIds: number[] = [];
 
   @Output() viewDetails = new EventEmitter<Job>();
   @Output() addToFavorites = new EventEmitter<Job>();

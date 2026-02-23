@@ -1,7 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
 import * as ApplicationsActions from './applications.actions';
 import { ApplicationService } from '../../core/services/applications-api.service';
 
@@ -9,6 +10,7 @@ import { ApplicationService } from '../../core/services/applications-api.service
 export class ApplicationsEffects {
   private actions$ = inject(Actions);
   private applicationService = inject(ApplicationService);
+  private router = inject(Router);
 
   loadApplications$ = createEffect(() =>
     this.actions$.pipe(
@@ -25,9 +27,14 @@ export class ApplicationsEffects {
   addApplication$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ApplicationsActions.addApplication),
-      mergeMap(({ application }) =>
+      switchMap(({ application }) =>
         this.applicationService.addApplication(application).pipe(
-          map(added => ApplicationsActions.addApplicationSuccess({ application: added })),
+          switchMap(added =>
+            this.applicationService.getApplications(added.userId).pipe(
+              map(applications => ApplicationsActions.loadApplicationsSuccess({ applications })),
+              catchError(error => of(ApplicationsActions.addApplicationFailure({ error })))
+            )
+          ),
           catchError(error => of(ApplicationsActions.addApplicationFailure({ error })))
         )
       )
