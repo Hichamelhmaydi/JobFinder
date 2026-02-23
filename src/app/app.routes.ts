@@ -28,6 +28,10 @@ export const routes: Routes = [
       import('./features/auth/register/register.component')
         .then(m => m.RegisterComponent)
   },
+  {
+  path: 'job/:id',
+  loadComponent: () => import('./features/jobs/job-detail/job-detail.component').then(m => m.JobDetailComponent)
+},
 
   {
     path: '**',

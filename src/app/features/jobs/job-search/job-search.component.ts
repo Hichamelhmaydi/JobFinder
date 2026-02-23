@@ -91,11 +91,9 @@ export class JobSearchComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  onViewDetails(job: Job): void {
-    if (job.refs?.landing_page) {
-      window.open(job.refs.landing_page, '_blank');
-    }
-  }
+onViewDetails(job: Job): void {
+  this.router.navigate(['/job', job.id]);
+}
 
   onAddToFavorites(job: Job): void {
     if (!this.isAuthenticated) {
