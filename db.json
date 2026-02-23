@@ -112,5 +112,28 @@
     }
   ],
   "favorites": [],
-  "applications": []
+  "applications": [
+    {
+      "id": "0fe0",
+      "userId": "ecb9",
+      "offerId": 21203049,
+      "title": "Administrative Assistant",
+      "company": "DaVita",
+      "location": "Long Beach, CA",
+      "status": "rejected",
+      "appliedAt": "2026-02-23T14:55:29.278Z",
+      "updatedAt": "2026-02-23T14:56:07.796Z"
+    },
+    {
+      "id": "ce84",
+      "userId": "ecb9",
+      "offerId": 20331653,
+      "title": "Pharmacy Intern - Grad",
+      "company": "CVS Health",
+      "location": "Kansas City, MO",
+      "status": "accepted",
+      "appliedAt": "2026-02-23T14:55:53.374Z",
+      "updatedAt": "2026-02-23T14:55:58.738Z"
+    }
+  ]
 }

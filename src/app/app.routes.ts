@@ -37,6 +37,11 @@ export const routes: Routes = [
   path: 'favorites',
   loadChildren: () => import('./features/favorites/favorites.routes').then(m => m.FAVORITES_ROUTES)
 },
+  {
+    path: 'applications',  
+    loadComponent: () =>
+      import('./features/applications/applications-list/applications-list.component').then(m => m.ApplicationsListComponent)
+  },
 
   {
     path: '**',

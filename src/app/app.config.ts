@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import{favoritesReducer} from './store/favorites/favorites.reducer'
 import{FavoritesEffects} from './store/favorites/favorites.effects'
+import{applicationsReducer} from './store/applications/applications.reducer'
+import{ApplicationsEffects} from './store/applications/applications.effects'
 
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
@@ -15,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideStore(),
     provideEffects(),
-    provideStore({ favorites: favoritesReducer }),
-    provideEffects([FavoritesEffects]),
+    provideStore({ favorites: favoritesReducer ,applications: applicationsReducer}),
+    provideEffects([FavoritesEffects, ApplicationsEffects]),
 ]
 };
