@@ -11,6 +11,8 @@ import { JobResultsComponent } from '../components/job-results/job-results.compo
 import { PaginationComponent } from '../../../shared/components/pagination/pagination.component';
 import * as FavoritesActions from '../../../store/favorites/favorites.actions';
 import * as FavoritesSelectors from '../../../store/favorites/favorites.selectors';
+import * as ApplicationsActions from '../../../store/applications/applications.actions';
+import * as ApplicationsSelectors from '../../../store/applications/applications.selectors';
 
 @Component({
   selector: 'app-job-search',
@@ -30,9 +32,10 @@ export class JobSearchComponent implements OnInit {
   private store = inject(Store);
 
   jobs$!: Observable<JobApiResponse>;
-  
-  // ✅ Observable direct depuis le store
+
+  // Observables réactifs depuis le store
   favoriteIds$: Observable<number[]> = this.store.select(FavoritesSelectors.selectFavoriteOfferIds);
+  applicationIds$: Observable<number[]> = this.store.select(ApplicationsSelectors.selectApplicationOfferIds);
 
   currentPage = 1;
   totalPages = 0;
@@ -48,6 +51,7 @@ export class JobSearchComponent implements OnInit {
     if (userStr) {
       const user = JSON.parse(userStr);
       this.store.dispatch(FavoritesActions.loadFavorites({ userId: user.id }));
+      this.store.dispatch(ApplicationsActions.loadApplications({ userId: user.id }));
     }
   }
 
@@ -129,5 +133,31 @@ export class JobSearchComponent implements OnInit {
       this.router.navigate(['/login']);
       return;
     }
+
+    const userStr = sessionStorage.getItem('user');
+    if (!userStr) return;
+    const user = JSON.parse(userStr);
+
+    this.store.select(ApplicationsSelectors.selectApplicationByOfferId(job.id))
+      .pipe(take(1))
+      .subscribe(existing => {
+        if (existing) {
+          this.router.navigate(['/applications']);
+        } else {
+          this.store.dispatch(ApplicationsActions.addApplication({
+            application: {
+              userId: user.id,
+              offerId: job.id,
+              title: job.name,
+              company: job.company.name,
+              location: job.locations?.[0]?.name ?? 'Remote / Non spécifié',
+              status: 'pending',
+              appliedAt: new Date(),
+              updatedAt: new Date()
+            }
+          }));
+          this.router.navigate(['/applications']);
+        }
+      });
   }
 }
