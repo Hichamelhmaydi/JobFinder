@@ -53,8 +53,46 @@
       "number": "+1 (847) 265-8665",
       "country": "Esse ut illum tota",
       "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "91b9",
+      "firstName": "Assumenda in non tem",
+      "lastName": "Esse soluta delenit",
+      "email": "ziwasu@mailinator.com",
+      "number": "+1 (285) 703-9694",
+      "country": "Sed sit ea inventore",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "c2ae",
+      "firstName": "Nostrum impedit lau",
+      "lastName": "At consectetur iste ",
+      "email": "gojag@mailinator.com",
+      "number": "+1 (807) 776-7262",
+      "country": "Sit fugiat nihil mi",
+      "password": "Pa$$w0rd!"
     }
   ],
-  "favoritesOffers": [],
+  "jobs": [
+    {
+      "id": "1",
+      "title": "Software Engineer",
+      "company": "Tech Corp",
+      "location": "Remote",
+      "description": "We are looking for a skilled Software Engineer...",
+      "type": "Full-time",
+      "created_at": "2023-10-27T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "title": "Product Manager",
+      "company": "Innovate Ltd",
+      "location": "New York, NY",
+      "description": "Join our team as a Product Manager...",
+      "type": "Full-time",
+      "created_at": "2023-10-26T14:30:00Z"
+    }
+  ],
+  "favorites": [],
   "applications": []
 }

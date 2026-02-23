@@ -20,14 +20,14 @@ export class RegisterComponent  {
 
     private fb = inject(NonNullableFormBuilder);
 
-    registerForm = this.fb.group({
-    firstName: ['', Validators.required,Validators.minLength(4)],
-    lastName: ['', Validators.required,Validators.minLength(4)],
-    email: ['', [Validators.required, Validators.email, Validators.minLength(6)]],
-    number: ['', Validators.required,Validators.minLength(10)],
-    country: ['', Validators.required,Validators.minLength(3)],
-    password: ['', Validators.required,Validators.minLength(8)]
-    });
+registerForm = this.fb.group({
+  firstName: ['', [Validators.required, Validators.minLength(4)]],
+  lastName:  ['', [Validators.required, Validators.minLength(4)]],
+  email:     ['', [Validators.required, Validators.email, Validators.minLength(6)]],
+  number:    ['', [Validators.required, Validators.minLength(10)]],
+  country:   ['', [Validators.required, Validators.minLength(3)]],
+  password:  ['', [Validators.required, Validators.minLength(8)]]
+});
     
     onSubmit() {
     if (this.registerForm.invalid) return;

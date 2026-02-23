@@ -101,11 +101,14 @@
                         formControlName="country"
                         class="w-full text-left rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500">
 
-                    <ng-container *ngIf="registerForm.get('country')?.invalid && registerForm.get('country')?.touched">
-                    <div class="text-red-500 text-sm mt-1">
-                        Country is required.
-                    </div>
-                    </ng-container>
+<ng-container *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+  <div class="text-red-500 text-sm mt-1" *ngIf="registerForm.get('firstName')?.errors?.['required']">
+    First Name is required.
+  </div>
+  <div class="text-red-500 text-sm mt-1" *ngIf="registerForm.get('firstName')?.errors?.['minlength']">
+    First Name must be at least 4 characters.
+  </div>
+</ng-container>
 
                 </div>
                     
