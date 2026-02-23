@@ -12,7 +12,7 @@
       <div class="hidden md:flex md:items-center md:space-x-8">
         <a routerLink="/home" class="text-gray-600 hover:text-blue-600">Accueil</a>
         <ng-container *ngIf="(isAuthenticated$ | async)">
-            <a routerLink="/favorites" class="text-gray-600 hover:text-blue-600">Favoris</a>
+            <a routerLink="/favorites" routerLinkActive="active">Mes favoris</a>
             <a routerLink="/applications" class="text-gray-600 hover:text-blue-600">Candidatures</a>
         </ng-container>
       </div>

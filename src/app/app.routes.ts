@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import{authGuard} from './core/guards/auth.guard';
 
 export const routes: Routes = [
 
@@ -31,6 +32,10 @@ export const routes: Routes = [
   {
   path: 'job/:id',
   loadComponent: () => import('./features/jobs/job-detail/job-detail.component').then(m => m.JobDetailComponent)
+},
+{
+  path: 'favorites',
+  loadChildren: () => import('./features/favorites/favorites.routes').then(m => m.FAVORITES_ROUTES)
 },
 
   {

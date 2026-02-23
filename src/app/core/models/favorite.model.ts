@@ -1,6 +1,9 @@
-export interface Favorite { 
-    id: number;
-    userId: number;
-    offerId: number;
-    createdAt: Date;
+export interface Favorite {
+  id: number;
+  userId: number;
+  offerId: number;        
+  title: string;         
+  company: string;        
+  location: string;       
+  createdAt: Date;        
 }
