@@ -83,11 +83,20 @@
     },
     {
       "id": "ecb9",
-      "firstName": "Eos consectetur it",
-      "lastName": "Duis repudiandae vol",
-      "email": "velasek@mailinator.com",
-      "number": "+1 (533) 844-4743",
-      "country": "Quia porro rerum sun",
+      "firstName": "Hicham",
+      "lastName": "El hmaydi",
+      "email": "animinako@mailinator.com",
+      "number": "0774696370",
+      "country": "Maroc",
+      "password": "Pa$$w0rd!"
+    },
+    {
+      "id": "6453",
+      "firstName": "Saepe consequatur E",
+      "lastName": "Qui veritatis ad dol",
+      "email": "myha@mailinator.com",
+      "number": "+1 (392) 346-7077",
+      "country": "Quis ullam tempore ",
       "password": "Pa$$w0rd!"
     }
   ],
@@ -167,6 +176,17 @@
       "status": "pending",
       "appliedAt": "2026-02-23T15:28:30.343Z",
       "updatedAt": "2026-02-23T15:28:30.343Z"
+    },
+    {
+      "id": "7a6a",
+      "userId": "ecb9",
+      "offerId": 20331653,
+      "title": "Pharmacy Intern - Grad",
+      "company": "CVS Health",
+      "location": "Kansas City, MO",
+      "status": "pending",
+      "appliedAt": "2026-02-24T11:11:07.280Z",
+      "updatedAt": "2026-02-24T11:11:07.280Z"
     }
   ]
 }

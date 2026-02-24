@@ -42,7 +42,11 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/applications/applications-list/applications-list.component').then(m => m.ApplicationsListComponent)
   },
-
+  {
+    path: 'profile',  
+    loadComponent: () =>
+      import('./features/profile/profile-page/profile-page.component').then(m => m.ProfileComponent)
+  },
   {
     path: '**',
     redirectTo: 'home'
