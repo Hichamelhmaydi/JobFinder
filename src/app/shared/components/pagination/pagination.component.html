@@ -1,40 +1,51 @@
- <div class="flex items-center justify-center gap-2 py-8">
-      <button
-        (click)="onPageChange(currentPage - 1)"
-        [disabled]="currentPage === 1"
-        [class.opacity-50]="currentPage === 1"
-        [class.cursor-not-allowed]="currentPage === 1"
-        class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors duration-200 disabled:hover:bg-white"
-      >
-        Précédent
-      </button>
+<div class="flex items-center justify-center gap-3 py-8">
+  <!-- Bouton Précédent -->
+  <button
+    (click)="onPageChange(currentPage - 1)"
+    [disabled]="currentPage === 1"
+    [class.opacity-50]="currentPage === 1"
+    [class.cursor-not-allowed]="currentPage === 1"
+    class="group flex items-center gap-2 px-4 py-2 bg-white border-2 border-[#C4EEF2] rounded-xl text-[#025159] font-semibold shadow-sm hover:shadow-md hover:border-[#7AB8BF] hover:-translate-y-0.5 transition-all duration-200 disabled:hover:bg-white disabled:hover:border-[#C4EEF2] disabled:hover:-translate-y-0"
+  >
+    <svg class="w-5 h-5 text-[#3E848C] group-hover:text-[#025159] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+    <span>Précédent</span>
+  </button>
 
-      <div class="flex gap-2">
-        @for (page of getPageNumbers(); track page) {
-          @if (page === '...') {
-            <span class="px-4 py-2 text-gray-500">...</span>
-          } @else {
-            <button
-              (click)="onPageChange(page)"
-              [class.bg-blue-600]="currentPage === page"
-              [class.text-white]="currentPage === page"
-              [class.bg-white]="currentPage !== page"
-              [class.text-gray-700]="currentPage !== page"
-              class="px-4 py-2 border border-gray-300 rounded-lg font-medium hover:bg-blue-500 hover:text-white transition-colors duration-200"
-            >
-              {{ page }}
-            </button>
-          }
-        }
-      </div>
+  <!-- Numéros de page -->
+  <div class="flex gap-2">
+    @for (page of getPageNumbers(); track page) {
+      @if (page === '...') {
+        <span class="px-4 py-2 text-[#3E848C] font-medium">...</span>
+      } @else {
+        <button
+          (click)="onPageChange(page)"
+          [class.bg-[#025159]]="currentPage === page"
+          [class.text-white]="currentPage === page"
+          [class.border-[#025159]]="currentPage === page"
+          [class.bg-white]="currentPage !== page"
+          [class.text-[#025159]]="currentPage !== page"
+          [class.border-[#C4EEF2]]="currentPage !== page"
+          class="px-4 py-2 border-2 rounded-xl font-semibold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 hover:border-[#7AB8BF]"
+        >
+          {{ page }}
+        </button>
+      }
+    }
+  </div>
 
-      <button
-        (click)="onPageChange(currentPage + 1)"
-        [disabled]="currentPage === totalPages"
-        [class.opacity-50]="currentPage === totalPages"
-        [class.cursor-not-allowed]="currentPage === totalPages"
-        class="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition-colors duration-200 disabled:hover:bg-white"
-      >
-        Suivant
-      </button>
-    </div>
+  <!-- Bouton Suivant -->
+  <button
+    (click)="onPageChange(currentPage + 1)"
+    [disabled]="currentPage === totalPages"
+    [class.opacity-50]="currentPage === totalPages"
+    [class.cursor-not-allowed]="currentPage === totalPages"
+    class="group flex items-center gap-2 px-4 py-2 bg-white border-2 border-[#C4EEF2] rounded-xl text-[#025159] font-semibold shadow-sm hover:shadow-md hover:border-[#7AB8BF] hover:-translate-y-0.5 transition-all duration-200 disabled:hover:bg-white disabled:hover:border-[#C4EEF2] disabled:hover:-translate-y-0"
+  >
+    <span>Suivant</span>
+    <svg class="w-5 h-5 text-[#3E848C] group-hover:text-[#025159] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
