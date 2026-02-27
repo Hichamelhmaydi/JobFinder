@@ -1,23 +1,23 @@
-<div class="flex items-center justify-center gap-3 py-8">
+<div class="flex items-center justify-center gap-3 py-10">
   <!-- Bouton Précédent -->
   <button
     (click)="onPageChange(currentPage - 1)"
     [disabled]="currentPage === 1"
     [class.opacity-50]="currentPage === 1"
     [class.cursor-not-allowed]="currentPage === 1"
-    class="group flex items-center gap-2 px-4 py-2 bg-white border-2 border-[#C4EEF2] rounded-xl text-[#025159] font-semibold shadow-sm hover:shadow-md hover:border-[#7AB8BF] hover:-translate-y-0.5 transition-all duration-200 disabled:hover:bg-white disabled:hover:border-[#C4EEF2] disabled:hover:-translate-y-0"
+    class="group inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#7AB8BF] rounded-full text-[#025159] font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:border-[#025159] transition-all duration-200 disabled:hover:translate-y-0 disabled:hover:shadow-md"
   >
     <svg class="w-5 h-5 text-[#3E848C] group-hover:text-[#025159] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
     </svg>
     <span>Précédent</span>
   </button>
 
-  <!-- Numéros de page -->
+  <!-- Numéros de page avec design moderne -->
   <div class="flex gap-2">
     @for (page of getPageNumbers(); track page) {
       @if (page === '...') {
-        <span class="px-4 py-2 text-[#3E848C] font-medium">...</span>
+        <span class="w-10 h-10 flex items-center justify-center text-[#3E848C] font-medium">...</span>
       } @else {
         <button
           (click)="onPageChange(page)"
@@ -26,8 +26,8 @@
           [class.border-[#025159]]="currentPage === page"
           [class.bg-white]="currentPage !== page"
           [class.text-[#025159]]="currentPage !== page"
-          [class.border-[#C4EEF2]]="currentPage !== page"
-          class="px-4 py-2 border-2 rounded-xl font-semibold shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 hover:border-[#7AB8BF]"
+          [class.border-[#7AB8BF]]="currentPage !== page"
+          class="w-10 h-10 flex items-center justify-center border-2 rounded-full font-semibold shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-[#025159] transition-all duration-200"
         >
           {{ page }}
         </button>
@@ -41,11 +41,11 @@
     [disabled]="currentPage === totalPages"
     [class.opacity-50]="currentPage === totalPages"
     [class.cursor-not-allowed]="currentPage === totalPages"
-    class="group flex items-center gap-2 px-4 py-2 bg-white border-2 border-[#C4EEF2] rounded-xl text-[#025159] font-semibold shadow-sm hover:shadow-md hover:border-[#7AB8BF] hover:-translate-y-0.5 transition-all duration-200 disabled:hover:bg-white disabled:hover:border-[#C4EEF2] disabled:hover:-translate-y-0"
+    class="group inline-flex items-center gap-2 px-5 py-2.5 bg-white border-2 border-[#7AB8BF] rounded-full text-[#025159] font-semibold shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:border-[#025159] transition-all duration-200 disabled:hover:translate-y-0 disabled:hover:shadow-md"
   >
     <span>Suivant</span>
     <svg class="w-5 h-5 text-[#3E848C] group-hover:text-[#025159] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
   </button>
 </div>

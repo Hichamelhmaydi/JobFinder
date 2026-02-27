@@ -1,34 +1,57 @@
-<div class="min-h-screen bg-gray-100">
+<div class="min-h-screen bg-gradient-to-b from-[#C4EEF2] to-white">
   
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     
-    <div class="mb-8">
-      <h1 class="text-4xl font-bold text-gray-900 mb-2">Recherche d'emplois</h1>
-      <p class="text-gray-600">Explorez plus de 4000 pages d'offres internationales</p>
+    <!-- En-tête avec illustration ou icône -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
+      <div>
+        <h1 class="text-5xl font-extrabold text-[#025159] mb-2 tracking-tight">
+          Recherche d'emplois
+        </h1>
+        <p class="text-xl text-[#3E848C] font-light">
+          Explorez plus de 4000 pages d'offres internationales
+        </p>
+      </div>
+      <div class="mt-4 md:mt-0">
+        <span class="inline-block p-3 bg-[#7AB8BF] rounded-2xl shadow-lg">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </span>
+      </div>
     </div>
 
-    <app-job-search-form (search)="onSearch($event)"></app-job-search-form>
+    <!-- Formulaire de recherche (à styliser) -->
+    <div class="bg-white rounded-2xl shadow-xl p-6 mb-8 border border-[#7AB8BF]">
+      <app-job-search-form (search)="onSearch($event)"></app-job-search-form>
+    </div>
 
-    <app-job-results
-      [jobs$]="jobs$"
-      [isAuthenticated]="isAuthenticated"
-      [favoriteIds]="(favoriteIds$ | async) ?? []"
-      [applicationIds]="(applicationIds$ | async) ?? []"  
-      [hasFilters]="hasFilters()"
-      (viewDetails)="onViewDetails($event)"
-      (addToFavorites)="onAddToFavorites($event)"
-      (trackApplication)="onTrackApplication($event)"
-      (nextPage)="onNextPage()"
-      (clearFilters)="onClearFilters()"
-    ></app-job-results>
+    <!-- Résultats de recherche -->
+    <div class="mt-8">
+      <app-job-results
+        [jobs$]="jobs$"
+        [isAuthenticated]="isAuthenticated"
+        [favoriteIds]="(favoriteIds$ | async) ?? []"
+        [applicationIds]="(applicationIds$ | async) ?? []"  
+        [hasFilters]="hasFilters()"
+        (viewDetails)="onViewDetails($event)"
+        (addToFavorites)="onAddToFavorites($event)"
+        (trackApplication)="onTrackApplication($event)"
+        (nextPage)="onNextPage()"
+        (clearFilters)="onClearFilters()"
+      ></app-job-results>
+    </div>
 
+    <!-- Pagination -->
     @if ((jobs$ | async)?.page_count ?? 0 > 1) {
-      <app-pagination
-        [currentPage]="currentPage"
-        [totalPages]="totalPages"
-        [totalItems]="totalItems"
-        (pageChange)="onPageChange($event)"
-      ></app-pagination>
+      <div class="mt-10">
+        <app-pagination
+          [currentPage]="currentPage"
+          [totalPages]="totalPages"
+          [totalItems]="totalItems"
+          (pageChange)="onPageChange($event)"
+        ></app-pagination>
+      </div>
     }
 
   </main>

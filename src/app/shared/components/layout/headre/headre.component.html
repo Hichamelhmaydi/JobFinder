@@ -1,27 +1,29 @@
-<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[#C4EEF2]/60 shadow-sm">
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-[#C4EEF2] shadow-sm">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      <!-- Logo avec dégradé personnalisé -->
-      <a routerLink="/home" class="text-2xl font-extrabold bg-gradient-to-r from-[#025159] to-[#3E848C] bg-clip-text text-transparent">
+      <!-- Logo avec dégradé et effet -->
+      <a routerLink="/home" class="text-2xl font-extrabold bg-gradient-to-r from-[#025159] to-[#3E848C] bg-clip-text text-transparent hover:from-[#3E848C] hover:to-[#025159] transition-all duration-300">
         JobFinder
       </a>
 
-      <!-- Navigation centrale -->
+      <!-- Navigation centrale avec indicateur animé -->
       <div class="hidden md:flex md:items-center md:space-x-8">
         <a routerLink="/home"
-           class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors duration-200 relative group">
+           class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors relative group">
           Accueil
-          <span class="absolute inset-x-0 bottom-0 h-0.5 bg-[#A67458] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A67458] group-hover:w-full transition-all duration-300"></span>
         </a>
         <ng-container *ngIf="(isAuthenticated$ | async)">
           <a routerLink="/favorites"
              routerLinkActive="text-[#025159] font-semibold"
-             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors duration-200">
+             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors relative group">
             Mes favoris
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A67458] group-hover:w-full transition-all duration-300"></span>
           </a>
           <a routerLink="/applications"
-             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors duration-200">
+             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors relative group">
             Candidatures
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#A67458] group-hover:w-full transition-all duration-300"></span>
           </a>
         </ng-container>
       </div>
@@ -30,26 +32,27 @@
       <div class="hidden md:flex md:items-center md:space-x-4">
         <ng-container *ngIf="!(isAuthenticated$ | async)">
           <a routerLink="/login"
-             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors duration-200">
+             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors">
             Connexion
           </a>
           <a routerLink="/register"
-             class="bg-gradient-to-r from-[#025159] to-[#3E848C] text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-medium">
+             class="bg-[#025159] hover:bg-[#3E848C] text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-medium">
             Inscription
           </a>
         </ng-container>
 
         <ng-container *ngIf="isAuthenticated$ | async">
           <a routerLink="/profile"
-             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors duration-200">
+             class="text-[#025159] font-medium hover:text-[#3E848C] transition-colors">
             Mon Profil
           </a>
           <button (click)="logout()"
-                  class="bg-[#A67458] text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-medium">
+                  class="bg-[#A67458] hover:bg-[#8B5E42] text-white px-6 py-2 rounded-full shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 font-medium">
             Déconnexion
           </button>
         </ng-container>
       </div>
+
     </div>
   </nav>
 </header>
