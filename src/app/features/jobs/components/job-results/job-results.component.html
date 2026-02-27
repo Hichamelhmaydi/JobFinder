@@ -8,81 +8,88 @@
         (clearFilters)="onClearFilters()"
       ></app-empty-page-message>
     } @else {
-      <div class="bg-white rounded-xl shadow-lg p-12 text-center">
-        <svg class="w-24 h-24 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-        <h3 class="text-xl font-semibold text-gray-700 mb-2">Aucune offre trouvée</h3>
-        <p class="text-gray-500">Il n'y a actuellement aucune offre d'emploi disponible</p>
+      <div class="bg-white rounded-2xl shadow-xl p-12 text-center border border-[#7AB8BF]">
+        <div class="w-24 h-24 mx-auto bg-[#C4EEF2] rounded-full flex items-center justify-center mb-4">
+          <svg class="w-12 h-12 text-[#025159]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-[#025159] mb-2">Aucune offre trouvée</h3>
+        <p class="text-[#3E848C]">Il n'y a actuellement aucune offre d'emploi disponible</p>
       </div>
     }
     
   } @else {
-    <div class="mb-6">
-      <p class="text-gray-600 text-lg">
-        <span class="font-semibold text-gray-800">{{ response.results.length }}</span> 
-        offre{{ response.results.length > 1 ? 's' : '' }} sur cette page
-        @if (hasFilters) {
-          <span class="text-sm text-blue-600"> (filtrées côté client)</span>
-        }
-      </p>
-      <p class="text-xs text-gray-500 mt-1">
-        Page {{ response.page }} sur {{ response.page_count }} (~{{ response.total }} offres au total dans l'API)
-      </p>
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <p class="text-[#025159] text-lg font-medium">
+          <span class="font-bold">{{ response.results.length }}</span> 
+          offre{{ response.results.length > 1 ? 's' : '' }} sur cette page
+          @if (hasFilters) {
+            <span class="ml-2 inline-flex items-center px-3 py-1 rounded-full text-xs bg-[#A67458] text-white">
+              Filtrées
+            </span>
+          }
+        </p>
+        <p class="text-xs text-[#3E848C] mt-1">
+          Page {{ response.page }} sur {{ response.page_count }} ({{ response.total }} offres au total)
+        </p>
+      </div>
+      <!-- Optionnel : bouton de tri -->
     </div>
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       @for (job of response.results; track job.id) {
-        <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 border border-gray-100 p-6 flex flex-col justify-between">
+        <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-[#C4EEF2] p-6 flex flex-col">
           
-          <div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-              {{ job.name }}
-            </h3>
-
-            <div class="flex items-center gap-2 mb-2">
-              <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-              </svg>
-              <p class="text-sm text-gray-600 truncate">
-                {{ job.company.name }}
-              </p>
+          <!-- En-tête avec logo initiales -->
+          <div class="flex items-start gap-3 mb-4">
+            <div class="flex-1 min-w-0">
+              <h3 class="text-lg font-semibold text-[#025159] line-clamp-2 leading-tight">
+                {{ job.name }}
+              </h3>
             </div>
-
-            <div class="flex items-center gap-2 mb-2">
-              <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-              </svg>
-              <p class="text-sm text-gray-600 truncate">
-                {{ job.locations?.[0]?.name ?? 'Remote / Non spécifié' }}
-              </p>
-            </div>
-
-            <div class="flex items-center gap-2 mb-4">
-              <svg class="w-4 h-4 text-gray-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-              </svg>
-              <p class="text-sm text-gray-600">
-                {{ job.publication_date | date: 'dd/MM/yyyy' }}
-              </p>
-            </div>
-
-            @if (job.categories && job.categories.length > 0) {
-              <div class="flex flex-wrap gap-2 mb-4">
-                @for (category of job.categories.slice(0, 2); track category.name) {
-                  <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
-                    {{ category.name }}
-                  </span>
-                }
-              </div>
-            }
           </div>
 
-          <div class="space-y-2 mt-4">
+          <!-- Informations -->
+          <div class="space-y-2 text-sm text-[#3E848C] mb-4">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#7AB8BF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              <span class="truncate">{{ job.company.name }}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#7AB8BF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span class="truncate">{{ job.locations?.[0]?.name ?? 'Remote / Non spécifié' }}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-[#7AB8BF] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>{{ job.publication_date | date: 'dd MMM yyyy' }}</span>
+            </div>
+          </div>
+
+          <!-- Catégories -->
+          @if (job.categories && job.categories.length > 0) {
+            <div class="flex flex-wrap gap-2 mb-4">
+              @for (category of job.categories.slice(0, 2); track category.name) {
+                <span class="px-2 py-1 bg-[#C4EEF2] text-[#025159] text-xs font-medium rounded-full">
+                  {{ category.name }}
+                </span>
+              }
+            </div>
+          }
+
+          <!-- Actions -->
+          <div class="mt-auto space-y-2">
             <button
               (click)="onViewDetails(job)"
-              class="w-full bg-indigo-600 text-white py-2 px-4 rounded-xl hover:bg-indigo-700 transition-colors duration-200 font-medium"
+              class="w-full bg-[#025159] hover:bg-[#3E848C] text-white py-2.5 px-4 rounded-xl transition-all shadow-md hover:shadow-lg font-medium"
             >
               Voir détails
             </button>
@@ -91,17 +98,15 @@
               <div class="flex gap-2">
                 <button
                   (click)="onAddToFavorites(job)"
-                  [class.bg-red-50]="isFavorite(job.id)"
-                  [class.text-red-600]="isFavorite(job.id)"
-                  [class.border-red-200]="isFavorite(job.id)"
-                  [class.bg-gray-50]="!isFavorite(job.id)"
-                  [class.text-gray-600]="!isFavorite(job.id)"
-                  [class.border-gray-200]="!isFavorite(job.id)"
-                  class="flex-1 py-2 px-3 border rounded-xl hover:bg-red-100 transition-colors duration-200 text-sm font-medium"
-                  title="Ajouter aux favoris"
+                  [class.bg-[#A67458]]="isFavorite(job.id)"
+                  [class.text-white]="isFavorite(job.id)"
+                  [class.bg-[#C4EEF2]]="!isFavorite(job.id)"
+                  [class.text-[#025159]]="!isFavorite(job.id)"
+                  class="flex-1 py-2 px-3 rounded-xl hover:bg-[#7AB8BF] hover:text-white transition-all shadow-sm flex items-center justify-center"
+                  [title]="isFavorite(job.id) ? 'Retirer des favoris' : 'Ajouter aux favoris'"
                 >
-                  <svg class="w-5 h-5 mx-auto" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                   </svg>
                 </button>
 
@@ -110,19 +115,18 @@
                   [disabled]="applicationIds.includes(job.id)"
                   [class.opacity-50]="applicationIds.includes(job.id)"
                   [class.cursor-not-allowed]="applicationIds.includes(job.id)"
-                  [class.bg-gray-100]="applicationIds.includes(job.id)"
-                  [class.bg-green-50]="!applicationIds.includes(job.id)"
-                  class="flex-1 py-2 px-3 text-green-600 border border-green-200 rounded-xl hover:bg-green-100 transition-colors duration-200 text-sm font-medium"
-                  [title]="applicationIds.includes(job.id) ? 'Déjà suivi ✓' : 'Suivre cette candidature'"
+                  [class.bg-[#3E848C]]="!applicationIds.includes(job.id)"
+                  [class.bg-gray-200]="applicationIds.includes(job.id)"
+                  class="flex-1 py-2 px-3 rounded-xl hover:bg-[#025159] text-white transition-all shadow-sm flex items-center justify-center"
+                  [title]="applicationIds.includes(job.id) ? 'Déjà suivi' : 'Suivre cette candidature'"
                 >
-                  <svg class="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                   </svg>
                 </button>
               </div>
             }
           </div>
-
         </div>
       }
     </div>
@@ -130,4 +134,4 @@
 
 } @else {
   <app-loading-spinner></app-loading-spinner>
-}
+} 
