@@ -1,31 +1,65 @@
-<div class="bg-[#C4EEF2] border-2 border-[#7AB8BF] rounded-2xl p-8 text-center shadow-lg">
-  <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-md">
-    <svg class="w-10 h-10 text-[#025159]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-    </svg>
-  </div>
-  
-  <h3 class="text-xl font-semibold text-[#025159] mb-3">
-    Aucune offre sur cette page avec vos filtres
-  </h3>
-  
-  <p class="text-[#3E848C] mb-6 max-w-md mx-auto">
-    Les filtres (mot-clé et localisation) sont appliqués sur chaque page.<br>
-    Cette page ne contient aucune offre correspondant à vos critères.
-  </p>
-    
-  <button
-    (click)="onClearFilters()"
-    class="bg-[#025159] hover:bg-[#3E848C] text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
-  >
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-    </svg>
-    Retirer les filtres
-  </button>
+<!-- 
+  ANGULAR TEMPLATE: empty-page-message.component.html
+  Remplacez votre template actuel par ce code
+-->
 
-  <p class="text-xs text-[#3E848C] mt-6 flex items-center justify-center gap-1">
-    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-    Astuce: Essayez de naviguer entre les pages ou de modifier vos recherche
+<div class="relative overflow-hidden rounded-3xl border border-[#C4EEF2] bg-white p-10 text-center">
+
+  <!-- Background décoratif -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#F0FAFB] via-white to-white pointer-events-none"></div>
+  <div class="absolute top-0 right-0 w-48 h-48 bg-[#C4EEF2] rounded-full opacity-20 -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 w-40 h-40 bg-[#A67458] rounded-full opacity-10 translate-y-1/2 -translate-x-1/2 blur-3xl pointer-events-none"></div>
+
+  <!-- Icône -->
+  <div class="relative z-10 mx-auto mb-6 w-20 h-20">
+    <div class="absolute inset-0 bg-gradient-to-br from-[#A67458] to-[#C4700A] rounded-2xl rotate-6 opacity-15"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-[#FEF3EC] to-[#FDE8D4] rounded-2xl flex items-center justify-center">
+      <svg class="w-9 h-9 text-[#A67458]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Texte -->
+  <div class="relative z-10 mb-7">
+    <h3 class="text-xl font-black text-[#011F22] mb-3" style="font-family: 'Syne', sans-serif;">
+      Aucune offre sur cette page
+    </h3>
+    <p class="text-sm text-[#3E848C] leading-relaxed max-w-sm mx-auto">
+      Les filtres actifs (mot-clé &amp; localisation) ne correspondent à aucune offre sur cette page. 
+      Essayez de naviguer ou de modifier vos critères.
+    </p>
+  </div>
+
+  <!-- Actions -->
+  <div class="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+    <button
+      (click)="onClearFilters()"
+      class="inline-flex items-center gap-2 bg-gradient-to-r from-[#025159] to-[#0A6B75] hover:from-[#0A6B75] hover:to-[#3E848C] text-white font-semibold py-3 px-6 rounded-2xl transition-all duration-300 shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-[0.98] text-sm"
+    >
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+      Retirer les filtres
+    </button>
+
+    <button
+      (click)="onNextPage()"
+      class="inline-flex items-center gap-2 bg-[#F0FAFB] hover:bg-[#C4EEF2] border border-[#C4EEF2] text-[#025159] font-semibold py-3 px-6 rounded-2xl transition-all duration-300 text-sm hover:scale-[1.02] active:scale-[0.98]"
+    >
+      Page suivante
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Astuce -->
+  <p class="relative z-10 text-xs text-[#3E848C]/60 mt-6 flex items-center justify-center gap-1.5">
+    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    Astuce : les filtres s'appliquent page par page
   </p>
+
 </div>
