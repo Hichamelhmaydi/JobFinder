@@ -1,25 +1,31 @@
-    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6 text-center">
-      <svg class="w-16 h-16 mx-auto text-yellow-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-      </svg>
-      
-      <h3 class="text-lg font-semibold text-gray-800 mb-2">
-        Aucune offre sur cette page avec vos filtres
-      </h3>
-      
-      <p class="text-gray-600 mb-4">
-        Les filtres (mot-clé et localisation) sont appliqués sur chaque page.<br>
-        Cette page ne contient aucune offre correspondant à vos critères.
-      </p>
-        
-        <button
-          (click)="onClearFilters()"
-          class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-6 rounded-lg transition-colors"
-        >
-          Retirer les filtres
-        </button>
-      </div>
+<div class="bg-[#C4EEF2] border-2 border-[#7AB8BF] rounded-2xl p-8 text-center shadow-lg">
+  <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-4 shadow-md">
+    <svg class="w-10 h-10 text-[#025159]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+    </svg>
+  </div>
+  
+  <h3 class="text-xl font-semibold text-[#025159] mb-3">
+    Aucune offre sur cette page avec vos filtres
+  </h3>
+  
+  <p class="text-[#3E848C] mb-6 max-w-md mx-auto">
+    Les filtres (mot-clé et localisation) sont appliqués sur chaque page.<br>
+    Cette page ne contient aucune offre correspondant à vos critères.
+  </p>
+    
+  <button
+    (click)="onClearFilters()"
+    class="bg-[#025159] hover:bg-[#3E848C] text-white font-semibold py-3 px-8 rounded-xl transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2"
+  >
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+    </svg>
+    Retirer les filtres
+  </button>
 
-      <p class="text-xs text-gray-500 mt-4">
-         Astuce: Essayez de naviguer entre les pages ou de modifier vos recherche
-      </p>
+  <p class="text-xs text-[#3E848C] mt-6 flex items-center justify-center gap-1">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    Astuce: Essayez de naviguer entre les pages ou de modifier vos recherche
+  </p>
+</div>
